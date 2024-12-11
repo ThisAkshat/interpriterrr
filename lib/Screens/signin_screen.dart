@@ -24,14 +24,21 @@ class _SignInScreenState extends State<SignInScreen> {
     return CustomScaffold(
       child: Column(
         children: [
-          const Expanded(
-            flex: 1,
-            child: SizedBox(
-              height: 10,
+          // Spacer to move the container up
+          SizedBox(
+            child:Center(
+              child: Transform.translate(
+                offset: const Offset(0, -20),
+              child: const Image(image: AssetImage('assests/images/signbridgelogo.png'),
+              height: 300,
+              width: 300,
+                  fit: BoxFit.contain
+              ),
+              ),
             ),
-          ),
+            ),
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Container(
               margin: const EdgeInsets.only(top: 30.0),
               padding: const EdgeInsets.fromLTRB(25.0, 50.0, 25.0, 30.0),
@@ -48,6 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      // Email Field
                       TextFormField(
                         controller: _emailController,
                         validator: (value) {
@@ -63,9 +71,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: Colors.black26,
                           ),
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12,
-                            ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -76,15 +81,15 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.red, // Red border on error
+                              color: Colors.red,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
+
+                      // Password Field
                       TextFormField(
                         controller: _passwordController,
                         obscureText: true,
@@ -102,9 +107,6 @@ class _SignInScreenState extends State<SignInScreen> {
                             color: Colors.black26,
                           ),
                           border: OutlineInputBorder(
-                            borderSide: const BorderSide(
-                              color: Colors.black12,
-                            ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -115,15 +117,15 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           errorBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
-                              color: Colors.red, // Red border on error
+                              color: Colors.red,
                             ),
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
+
+                      // Remember Me & Forgot Password Row
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -157,15 +159,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      const SizedBox(height: 25.0),
+
+                      // Sign In Button
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
                             if (_formSignInKey.currentState!.validate() && rememberPassword) {
-                              // Navigate to SideBarLayout on successful sign-in
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(builder: (context) => const SideBarLayout()),
@@ -186,11 +187,10 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           child: const Text('Sign In'),
                         ),
+                      ),
+                      const SizedBox(height: 25.0),
 
-                      ),
-                      const SizedBox(
-                        height: 25.0,
-                      ),
+                      // Sign Up Row
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -219,9 +219,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 20.0,
-                      ),
+                      const SizedBox(height: 20.0),
                     ],
                   ),
                 ),

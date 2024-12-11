@@ -11,20 +11,22 @@ class HomePage extends StatelessWidget implements NavigationStates {
       body: Stack(
         children: [
           // Split background colors
-          Column(
-            children: [
-              Expanded(
-                child: Container(
-                  color: const Color(0xFF2B4B4B), // 50% teal
-                ),
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFF00796B), // Bottom color now at the top
+                  Color(0xFF004D40), // Gradient transition color
+                  Colors.black,      // Black color now at the bottom
+                ],
+                stops: [0.0, 0.3, 1.0], // Adjust stops as needed
               ),
-              Expanded(
-                child: Container(
-                  color: Colors.grey[900], // Dark gray
-                ),
-              ),
-            ],
+            ),
           ),
+
+
 
           // Main content
           Positioned.fill(
@@ -69,7 +71,6 @@ class HomePage extends StatelessWidget implements NavigationStates {
                 // Add space above the green box to move it down
                 const SizedBox(height: 60), // Adjust this value for the desired distance
 
-                // Sign Subtitle Box (Moved lower)
                 // Sign Subtitle Box (Moved lower and made bigger)
                 Center(
                   child: Container(
@@ -77,7 +78,7 @@ class HomePage extends StatelessWidget implements NavigationStates {
                     margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 20), // Adjust margin for more space
                     decoration: BoxDecoration(
                       color: const Color(0xFF417878), // Dark Green color
-                      borderRadius: BorderRadius.circular(12), // Slightly increased border radius for a smoother look
+                      borderRadius: BorderRadius.circular(40), // Slightly increased border radius for a smoother look
                     ),
                     child: const Column(
                       children: [
@@ -134,7 +135,7 @@ class HomePage extends StatelessWidget implements NavigationStates {
                   padding: const EdgeInsets.only(bottom: 16), // Added bottom padding to move it up
                   decoration: BoxDecoration(
                     color: const Color(0xFF417878), // Dark gray advertisement box
-                    borderRadius: BorderRadius.circular(25),
+                    borderRadius: BorderRadius.circular(40),
                   ),
                   child: const Center(
                     child: Text(
@@ -155,7 +156,6 @@ class HomePage extends StatelessWidget implements NavigationStates {
                   indent: 16, // Space before the line starts (same as container margin)
                   endIndent: 16, // Space after the line ends (same as container margin)
                 ),
-
 
                 // Bottom Buttons
                 Container(
@@ -194,11 +194,11 @@ class HomePage extends StatelessWidget implements NavigationStates {
     return Column(
       children: [
         Container(
-          width: 64,
-          height: 64,
+          width: 72,
+          height: 72,
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(36), // More circular shape
           ),
           child: Icon(icon, size: 32, color: const Color(0xFF66CDAA)),
         ),

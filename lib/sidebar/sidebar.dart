@@ -70,7 +70,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  color: const Color(0xFF262AAA),
+                  color: const Color(0xFF2B4B4B),
                   child: Column(
                     children: <Widget>[
                       const SizedBox(

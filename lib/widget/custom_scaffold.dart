@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomScaffold extends StatelessWidget {
   const CustomScaffold({super.key, required this.child});
   final Widget? child;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,17 +15,27 @@ class CustomScaffold extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Stack(
         children: [
-          Image.asset(
-            'assests/images/SIFLOGOO.jpg',
-            fit:BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
+          // Gradient Background
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.black, // Top color (matches the image's top)
+                  Color(0xFF004D40), // Gradient transition color
+                  Color(0xFF00796B), // Bottom color (matches the image's bottom)
+                ],
+                stops: [0.2, 0.7, 1.0], // Adjust stops to make black more prominent
+              ),
+            ),
           ),
-          SafeArea(child:child!,
-          )
+          // The main content
+          SafeArea(
+            child: child!,
+          ),
         ],
       ),
-
     );
   }
 }
