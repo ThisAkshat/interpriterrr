@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'Alphabet.dart'; // Make sure to import your AlphabetPage here
+import 'Alphabet.dart'; // Import AlphabetPage
+import 'Number.dart'; // Import NumberPage
+import 'Common.dart'; // Import CommonPage
+import 'Emotions.dart'; // Import EmotionsPage
 
 class OfflinePage extends StatelessWidget {
   const OfflinePage({super.key});
@@ -91,7 +94,6 @@ class OfflinePage extends StatelessWidget {
                       colors: [
                         Color(0xFF00796B), // Top color
                         Color(0xFF004D40),
-                        // Bottom color
                       ],
                       stops: [0.15, 0.85],
                     ),
@@ -152,11 +154,26 @@ class OfflinePage extends StatelessWidget {
   Widget _buildCategoryCardWithGradient(BuildContext context, String title, String imagePath) {
     return GestureDetector(
       onTap: () {
-        // Navigate to AlphabetPage when the user clicks on the "The ISL Alphabet" card
+        // Navigate based on title
         if (title == "The ISL Alphabet") {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const AlphabetPage()),
+          );
+        } else if (title == "Numbers") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const NumberPage()),
+          );
+        } else if (title == "Common words") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CommonPage()),
+          );
+        } else if (title == "Emotions") { // Add this condition for Emotions
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const EmotionsPage()), // Navigate to EmotionsPage
           );
         }
       },

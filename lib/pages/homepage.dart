@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import '../bloc.navigation_bloc/navigation_bloc.dart';
 import 'offline_mode.dart';
+import 'chatSupport.dart'; // Import your chatSupport.dart file
+import 'ATS.dart'; // Import your ATS.dart file (make sure ATS.dart exists)
+import 'STT.dart'; // Import your STT.dart file (make sure STT.dart exists)
+import 'ABCI.dart'; // Import the ABCI.dart file
+import 'more.dart'; // Import the new more.dart file
 
 class HomePage extends StatelessWidget implements NavigationStates {
   const HomePage({super.key});
@@ -120,13 +125,53 @@ class HomePage extends StatelessWidget implements NavigationStates {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          _buildCircle(icon: Icons.pan_tool, label: 'Sign to Text'),
+                          _buildCircle(
+                            icon: Icons.pan_tool,
+                            label: 'Sign to Text',
+                            onTap: () {
+                              // Navigate to STT page (Sign to Text)
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const STTPage()),
+                              );
+                            },
+                          ),
                           const SizedBox(width: 16),
-                          _buildCircle(icon: Icons.mic, label: 'Audio to Sign'),
+                          _buildCircle(
+                              icon: Icons.mic,
+                              label: 'Audio to Sign',
+                              onTap: () {
+                                // Navigate to ATS page (Audio to Sign)
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => const ATSPage()),
+                                );
+                              }
+                          ),
                           const SizedBox(width: 16),
-                          _buildCircle(icon: Icons.widgets_sharp, label: 'ABCI'),
+                          _buildCircle(
+                            icon: Icons.widgets_sharp,
+                            label: 'ABCI',
+                            onTap: () {
+                              // Navigate to ABCIPage
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ABCIPage()),
+                              );
+                            },
+                          ),
                           const SizedBox(width: 16),
-                          _buildCircle(icon: Icons.more_horiz, label: 'MORE'),
+                          _buildCircle(
+                            icon: Icons.more_horiz,
+                            label: 'MORE',
+                            onTap: () {
+                              // Navigate to MorePage
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const MorePage()),
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -205,6 +250,13 @@ class HomePage extends StatelessWidget implements NavigationStates {
                       _buildBottomButton(
                         icon: Icons.chat_bubble,
                         label: 'Chat support',
+                        onTap: () {
+                          // Navigate to ChatSupportPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ChatSupportPage()),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -217,17 +269,20 @@ class HomePage extends StatelessWidget implements NavigationStates {
     );
   }
 
-  Widget _buildCircle({required IconData icon, required String label}) {
+  Widget _buildCircle({required IconData icon, required String label, VoidCallback? onTap}) {
     return Column(
       children: [
-        Container(
-          width: 72,
-          height: 72,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(36),
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: 72,
+            height: 72,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(36),
+            ),
+            child: Icon(icon, size: 32, color: const Color(0xFF66CDAA)),
           ),
-          child: Icon(icon, size: 32, color: const Color(0xFF66CDAA)),
         ),
         const SizedBox(height: 8),
         Text(
