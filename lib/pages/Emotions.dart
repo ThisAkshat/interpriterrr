@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interpriter/pages/sad.dart';
-import 'Happy.dart';  // Import the HappyPage
-// Import the SadPage
 
 class EmotionsPage extends StatelessWidget {
   const EmotionsPage({super.key});
@@ -85,41 +82,27 @@ class EmotionsPage extends StatelessWidget {
                 Expanded(
                   child: ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    children: [
+                    children: const [
                       // Happy
                       EmotionRow(
                         label: 'Happy',
                         emoji: '😊',
-                        onTap: () {
-                          // Navigate to the HappyPage
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const HappyPage()),
-                          );
-                        },
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
 
                       // Sad
                       EmotionRow(
                         label: 'Sad',
                         emoji: '😢',
-                        onTap: () {
-                          // Navigate to the SadPage
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const SadPage()),
-                          );
-                        },
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
 
                       // Love
                       EmotionRow(
                         label: 'Love',
                         emoji: '❤️',
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
 
                       // Laughing
                       EmotionRow(
