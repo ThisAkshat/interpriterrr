@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:interpriter/pages/sad.dart';
+import 'Happy.dart';  // Import the HappyPage
+// Import the SadPage
 
 class EmotionsPage extends StatelessWidget {
   const EmotionsPage({super.key});
@@ -84,30 +87,44 @@ class EmotionsPage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     children: [
                       // Happy
-                      EmotionButton(
+                      EmotionRow(
                         label: 'Happy',
                         emoji: '😊',
+                        onTap: () {
+                          // Navigate to the HappyPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const HappyPage()),
+                          );
+                        },
                       ),
                       const SizedBox(height: 20),
 
                       // Sad
-                      EmotionButton(
+                      EmotionRow(
                         label: 'Sad',
                         emoji: '😢',
+                        onTap: () {
+                          // Navigate to the SadPage
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const SadPage()),
+                          );
+                        },
                       ),
                       const SizedBox(height: 20),
 
-                      // Tired
-                      EmotionButton(
-                        label: 'Tired',
-                        emoji: '🥱',
+                      // Love
+                      EmotionRow(
+                        label: 'Love',
+                        emoji: '❤️',
                       ),
                       const SizedBox(height: 20),
 
                       // Laughing
-                      EmotionButton(
-                        label: 'Laughing',
-                        emoji: '😂',
+                      EmotionRow(
+                        label: 'Thank you',
+                        emoji: '🙏',
                       ),
                     ],
                   ),
@@ -121,41 +138,50 @@ class EmotionsPage extends StatelessWidget {
   }
 }
 
-class EmotionButton extends StatelessWidget {
+class EmotionRow extends StatelessWidget {
   final String label;
   final String emoji;
+  final VoidCallback? onTap;
 
-  const EmotionButton({required this.label, required this.emoji, super.key});
+  const EmotionRow({
+    required this.label,
+    required this.emoji,
+    this.onTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(30),
-      ),
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+    return GestureDetector(
+      onTap: onTap,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // Larger Emoji outside the box
           Text(
-            label,
-            style: const TextStyle(
-              fontSize: 40, // Increased label size
-              fontWeight: FontWeight.w500,
-              color: Colors.black87,
-            ),
+            emoji,
+            style: const TextStyle(fontSize: 60), // Increased emoji size
           ),
-          // Circle container for the emoji
+          // Smaller Text box with fixed width and height
           Container(
+            margin: const EdgeInsets.only(left: 16), // Space between emoji and box
             decoration: BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
+              color: Colors.grey[300],
+              borderRadius: BorderRadius.circular(30),
             ),
-            padding: const EdgeInsets.all(20), // Increased size for the emoji circle
-            child: Text(
-              emoji,
-              style: const TextStyle(fontSize: 40), // Increased emoji size
+            padding: const EdgeInsets.symmetric(horizontal: 16), // Keep horizontal padding consistent
+            height: 80, // Fixed height to make all boxes same size
+            width: 300, // Fixed width for consistent size
+            child: Center(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 28, // Font size for text inside the box
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black87,
+                ),
+                textAlign: TextAlign.center, // Center the text in the box
+              ),
             ),
           ),
         ],

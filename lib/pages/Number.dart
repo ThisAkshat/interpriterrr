@@ -5,6 +5,28 @@ class NumberPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Custom arrangement of numbers
+    final List<int?> gridItems = [
+      0, 1, 2,      // First row
+      3, 4, 5,      // Second row
+      6, 7, 8,      // Third row
+      null, 9, null // Fourth row (9 is in the middle of the 2nd column)
+    ];
+
+    // Define images for each number
+    final Map<int, String> imagePaths = {
+      0: 'assests/zeroSign.png',
+      1: 'assests/firstSign.png',
+      2: 'assests/twoSign.png',
+      3: 'assests/threeSign.png',
+      4: 'assests/fourSign.png',
+      5: 'assests/fiveSign.png',
+      6: 'assests/sixSign.png',
+      7: 'assests/sevenSign.png',
+      8: 'assests/eightSign.png',
+      9: 'assests/nineSign.png',
+    };
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF00796B),
@@ -64,7 +86,7 @@ class NumberPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 30),
 
-                // Grid of 10 boxes with numbers 0-9 in the upper-left corner
+                // Grid of boxes
                 Expanded(
                   child: GridView.builder(
                     padding: const EdgeInsets.all(16.0),
@@ -74,29 +96,17 @@ class NumberPage extends StatelessWidget {
                       mainAxisSpacing: 16.0, // Space between rows
                       childAspectRatio: 1, // Make the boxes square-shaped
                     ),
-                    itemCount: 10, // Now we have 10 boxes (0 to 9)
+                    itemCount: gridItems.length,
                     itemBuilder: (context, index) {
-                      // Define the images for each number box
-                      String imagePath = '';
-                      if (index == 0) {
-                        imagePath = 'assests/zeroSign.png'; // Image for 0
-                      } else if (index == 1) {
-                        imagePath = 'assests/firstSign.png'; // Image for 1
-                      } else if (index == 2) {
-                        imagePath = 'assests/twoSign.png'; // Image for 2
-                      } else if (index == 3) {
-                        imagePath = 'assests/threeSign.png'; // Image for 3
-                      } else if (index == 4) {
-                        imagePath = 'assests/fourSign.png'; // Image for 4
-                      } else if (index == 5) {
-                        imagePath = 'assests/fiveSign.png'; // Image for 5
-                      } else if (index == 6) {
-                        imagePath = 'assests/sixSign.png'; // Image for 6
-                      } else if (index == 7) {
-                        imagePath = 'assests/sevenSign.png'; // Image for 7
-                      } else if (index == 9) {
-                        imagePath = 'assests/nineSign.png'; // Image for 9
+                      final number = gridItems[index];
+
+                      if (number == null) {
+                        // Render an empty placeholder for null items
+                        return const SizedBox.shrink();
                       }
+
+                      // Get the image path for the number
+                      final imagePath = imagePaths[number];
 
                       return Container(
                         decoration: BoxDecoration(
@@ -110,7 +120,7 @@ class NumberPage extends StatelessWidget {
                               top: 8.0,
                               left: 8.0,
                               child: Text(
-                                '$index', // Display the number (0 to 9)
+                                '$number', // Display the number (0 to 9)
                                 style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
@@ -119,14 +129,14 @@ class NumberPage extends StatelessWidget {
                               ),
                             ),
                             // Add the image to the corresponding box
-                            if (imagePath.isNotEmpty)
+                            if (imagePath != null)
                               Positioned(
                                 bottom: 8.0,
-                                right: 10.0,
+                                right: 6.0,
                                 child: Image.asset(
                                   imagePath, // Correct path for the image
-                                  width: 100, // Adjust the width of the image as needed
-                                  height: 100, // Adjust the height of the image as needed
+                                  width: 80, // Adjust the width of the image as needed
+                                  height: 80, // Adjust the height of the image as needed
                                   fit: BoxFit.contain, // Maintain the aspect ratio
                                 ),
                               ),
